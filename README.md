@@ -103,4 +103,5 @@ We will  show the following data:
  4. Queues, gender compositions, crime, broken taps by town, etc., in provinces where it is relevant.
  5. Summary of improvements and costs.
 ![r](https://github.com/ngangawairimu/ACCESS-TO-WATER-/assets/140246805/ec748c7c-8957-4c6a-9ac8-a3a49c1ef3f5)
-
+## After few months
+![Capture](https://github.com/ngangawairimu/ACCESS-TO-WATER-/assets/140246805/af154e4e-3343-42da-8a6c-f9a8b781f8a3)
