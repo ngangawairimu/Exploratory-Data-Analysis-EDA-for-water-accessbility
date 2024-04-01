@@ -1,11 +1,10 @@
 -- PART 2 Beginning Our Data-Driven Journey in Maji Ndogo
--- Cleaning our data
+-- Cleaning our data using SQL
 
--- Bring up the employee table. It has info on all of our workers, but note that the email addresses have not been added. 
--- We will have to send them reports and figures, so let's update it.
---  Luckily the emails for our department are easy: first_name.last_name@ndogowater.gov.
+-- I will use an employee table that has info on all of our workers, but  the email addresses have not been added. 
+-- the email format  " first_name.last_name@ndogowater.gov".
 
-USE md_water_services ;
+USE md_water_services"database file" ;
 
 -- Bring up the employee table
 
@@ -13,7 +12,7 @@ SELECT*
 FROM
 employee;
 
---   Create eamail adress using this format (first_name.last_name@ndogowater.gov.)
+--   Creating  email address using this format (first_name.last_name@ndogowater.gov.)
 SELECT
     LOWER(REPLACE(employee_name," ",".")) AS Email_address
 FROM
@@ -25,11 +24,11 @@ SELECT
 FROM
 employee;
 
--- We have to update the database again with these email addresses, so before we do, 
--- let's use a SELECT query to get the format right, then use
+-- updating  the database again with these email addresses, so before we do, 
+-- using a SELECT query to get the format right, then use
 -- UPDATE and SET to make the changes.
 
-SET SQL_SAFE_UPDATES = 0;
+SET SQL_SAFE_UPDATES = 0; -- usually  
 UPDATE
 employee
 SET email =
@@ -64,8 +63,8 @@ FROM
 
 GROUP BY town_name;
 
-/* let's use the database to get the employee_ids and use those to get the names,
- email and phone numbers of the three field surveyors with the most location visits.*/
+/*we use the database to get the employee_ids and use those to get the names,
+ email, and phone numbers of the three field surveyors with the most location visits.*/
 
    SELECT 
 	assigned_employee_id,
@@ -77,7 +76,7 @@ GROUP BY town_name;
     LIMIT 3 ;
 
 -- Analysing locations
--- Create a query that counts the number of records per town
+-- Creating  a query that counts the number of records per town
 
 SELECT 
   town_name,
@@ -97,9 +96,9 @@ FROM
 GROUP BY province_name
 order by   records_per_province DESC
 ;  
--- From this table, it's pretty clear that most of the water sources in the survey are situated in small rural communities, scattered across Maji Ndogo.
+-- From this table,  most of the water sources in the survey are situated in small rural communities, scattered across Maji Ndogo.
 
--- Create a result set showing:
+--  a result set showing:
 	-- province_name ,town_name
 -- An aggregated count of records for each town (consider naming this records_per_town)
 SELECT
@@ -124,7 +123,7 @@ GROUP BY province_name, town_name
 ORDER BY province_name, records_per_town DESC
 ;
 
--- Finally, look at the number of records for each location type
+--looking at the number of records for each location type
 SELECT DISTINCT
 	location_type,
     COUNT(*) AS number_of_sources
@@ -133,20 +132,20 @@ FROM
 GROUP BY
 	location_type;
     
--- lETS use Percntages to see the differences
+--we can  use Percntages to see the differences
 -- Rural 
 
 SELECT ROUND(23740 / (15910 + 23740) * 100,0);
 -- URBAN
 SELECT ROUND(15910 / (15910 + 23740) * 100,0);
 
--- Return all rows in water source
+-- Return all rows to the water source
 
 SELECT*
 FROM water_source;
 
 
--- we want to count how many of each of the different water source types there are, and remember to sort them.
+-- We want to count how many of each of the different water source types there are and  sort them.
 
 SELECT
 	type_of_water_source,
@@ -156,8 +155,8 @@ SELECT
 GROUP BY type_of_water_source
 ORDER  BY number_of_sources DESC;
     
--- question 3: What is the average number of people that are served by each water source?
--- Remember to make the numbers easy to read
+-- Checking the average number of people that are served by each water source?
+
 SELECT
 	type_of_water_source,
     AVG(ROUND(number_of_people_served,1)) AS Avg_poeple_per_source
@@ -166,8 +165,8 @@ SELECT
 GROUP BY type_of_water_source
 ORDER  BY Avg_poeple_per_source DESC;   
 
--- Now let’s calculate the total number of people served by each type of water source in total,
--- to make it easier to interpret, order them so the most people served by a source is at the top.
+-- a query calculate the total number of people served by each type of water source in total,
+-- to make it easier to interpret, we will order them so the most people served by a source is at the top.
 
 SELECT
 	type_of_water_source,
@@ -209,7 +208,7 @@ ORDER  BY Sum_poeple_per_source DESC;
 
 -- START OUR SOLUTION
 
--- write a query that ranks each type of source based on how many people in total use it
+--a query that ranks each type of source based on how many people in total use it
 
 -- RANKING
 
@@ -223,7 +222,7 @@ GROUP BY type_of_water_source
 ORDER BY SUM(number_of_people_served)
 ;
 
--- we should remove tap_in_home from the ranking before we continue (because tap in home dont need improvement)
+-- a query that remove tap_in_home from the ranking before we continue (because tap in home dont need improvement)
 SELECT
     type_of_water_source,
     Sum_people_per_source,
@@ -241,7 +240,7 @@ FROM (
 ORDER BY Sum_people_per_source DESC;
 
 -- which shared taps or wells should be fixed first?
--- Querry below returs  all water source nee to be upgraded
+-- Querry below returns  all water source need to be upgraded
 
 SELECT
 	source_id,
@@ -270,22 +269,19 @@ ORDER BY number_of_people_served DESC;
 
 -- ANALYSING THE  QUEQUES
 
-/*These are some of the things I think are worth looking at:
+/*These are some of the things I think we will  looking at:
 1. How long did the survey take?
 2. What is the average total queue time for water?
 3. What is the average queue time on different days?
 4. How can we communicate this information efficiently?*/
--- HINT: I had to read up a bit on control flow, DateTime and window functions to do these, so you probably will have to as well
+-- we will use DateTime and window functions to do these, so you probably will have to as well
 
 
-/*Question 1:
-
-
-To calculate how long the survey took, we need to get the first and last dates 
+/*lets  calculate how long the survey took, we need to get the first and last dates 
 (which functions can find the largest/smallest value), 
-and subtract them. Remember with DateTime data, we can't just subtract the values. We have to use a function to get the difference in days.*/
+and subtract them.as  with DateTime data, we can't just subtract the values. We have to use a function to get the difference in days.*/
 
--- Find the Earliest Date:
+-- Finding  the Earliest Date:
 -- -- MINIMUM  DATE 2021-01-01 09:10:00
 SELECT
 MIN(time_of_record)
@@ -301,8 +297,7 @@ SELECT
 	DATEDIFF( MAX(time_of_record),MIN(time_of_record)) AS Time_taken
 FROM visits;
 
-/*Question 2:
-Let's see how long people have to queue on average in Maji Ndogo. Keep in mind that many sources like taps_in_home have no queues. These
+/*a query that  sees how long people have to queue on average in Maji Ndogo. Keeping  in mind that many sources like taps_in_home have no queues. These
 are just recorded as 0 in the time_in_queue column, so when we calculate averages, we need to exclude those rows. Try using NULLIF() do to
 this.*/
 -- Avg_time_in_queue = 123.2574
@@ -311,10 +306,8 @@ SELECT
 FROM
 	visits;    
     
--- Question 3:
-
--- So let's look at the queue times aggregated across the different days of the week.
--- we need to calculate the average queue time, grouped by day of the week.
+--  looking at the queue times aggregated across the different days of the week.
+--  calculate the average queue time, grouped by day of the week.
 SELECT	
     DAYNAME(time_of_record) AS day_of_week,
     AVG(time_in_queue) AS avg_time_in_queue
@@ -322,8 +315,7 @@ FROM
 	visits
 GROUP BY day_of_week;
 
--- Question 4
--- Question We can also look at what time during the day people collect water. Try to order the results in a meaningful way
+--looking  at what time during the day people collect water.we will  Try to order the results in a meaningful way
 
 SELECT	
 	HOUR(time_of_record) AS hour_of_day,
@@ -344,8 +336,8 @@ FROM
 GROUP BY hour_of_day
 ORDER BY hour_of_day ASC;
 
--- break down the queue times for each hour of each day? In a spreadsheet, we can just create a pivot table.
--- focusing on Sunday
+-- break down the queue times for each hour of each day? In a spreadsheet, we can just create a pivot table in sql.
+-- focusing on Sunday one day
 
 SELECT
 TIME_FORMAT(TIME(time_of_record), '%H:00') AS hour_of_day,
@@ -376,7 +368,7 @@ ELSE NULL
 END
 ),0) AS Sunday,
 
--- MONDAY
+-- MONDAY day two
 
 ROUND(AVG(
 CASE
@@ -385,7 +377,7 @@ ELSE NULL
 END
 ),0) AS Monday,
 
--- TUESDAY
+-- TUESDAY day three
 
 ROUND(AVG(
 CASE
@@ -403,7 +395,7 @@ ROUND(AVG(
  END
  ),0) AS Wednesday,
  
- -- Thursday
+ -- Thursday day four
  
  ROUND(AVG(
  CASE
@@ -413,7 +405,7 @@ ROUND(AVG(
  END
  ),0) AS Thursday,
  
--- Friday
+-- Friday  day five
 
 ROUND(AVG(
 CASE
@@ -423,7 +415,7 @@ ELSE NULL
 END
 ),0) AS Friday,
 
--- saturday
+-- saturday day 6
 
  ROUND(AVG(
 CASE
@@ -456,7 +448,7 @@ where
 	town_name = 'Dahabu'
     group by assigned_employee_id
   ;
-  
+  -- to answer some qustions from our projects
 -- How many employees live in Harare, Kilimani? Modify one of your queries from the project to answer this question. 
  
 SELECT
@@ -481,16 +473,13 @@ group by type_of_water_source ;
 
 -- ADDITIONAL QUESTION FROM DATASET
 
---	-- Question 1
----- Which SQL query will produce the date format "DD Month YYYY" from the time_of_record column in the visits
--- table, as a single column? Note: Monthname() acts in a similar way to DAYNAME().
 
 SELECT CONCAT(day(time_of_record), " ", month(time_of_record), " ", year(time_of_record)) FROM visits;
 
 
 -- Question 2
 
-/*You are working with an SQL query designed to calculate the Annual Rate of Change (ARC) for basic rural water services:
+/*calculating  the Annual Rate of Change (ARC) for basic rural water services:
 SELECT
 name,
 wat_bas_r - LAG(wat_bas_r) OVER (PARTITION BY (a) ORDER BY (b)) 
@@ -511,9 +500,7 @@ wat_bas_r IS NOT NULL
 ORDER BY name
 ;
 
--- QUESTION 3
-
-/*What are the names of the two worst-performing employees who visited the fewest sites, 
+-- /*a queue  ryy to  What are the names of the two worst-performing employees who visited the fewest sites, 
 and how many sites did the worst-performing employee visit?Modify your queries from the “Honouring the workers” section.*/
 SELECT
 employee_name,
@@ -522,7 +509,7 @@ FROM
 employee 
 ;
 
--- QUESTION  4
+--to answer some of the questions
 
 -- What are the names of the two worst-performing employees who visited the fewest sites, and how many 
 -- sites did the worst-performing employee visit? Modify your queries from the “Honouring the workers” section.
@@ -535,9 +522,8 @@ FROM
 WHERE
     ;
     
- -- Question 6
+ -- 
  
- /*One of our employees, Farai Nia, lives at 33 Angelique Kidjo Avenue. What would be the result if we TRIM() her address? */
     SELECT
         employee_name,
         TRIM(address)    AS trimmed_name
@@ -546,8 +532,8 @@ WHERE
     WHERE address in ('33 Angelique Kidjo Avenue')AND
      employee_name = 'Farai Nia';
 
--- Question 7
--- How many employees live in Dahabu? Rely on one of the queries we used in the project to answer this
+
+-- How many employees live in Dahabu? 
 
 SELECT
     town_name,
@@ -556,7 +542,7 @@ FROM
  employee
 WHERE
 town_name = 'Dahabu';
--- question 8 How many employees live in Harare, Kilimani? Modify one of your queries from the project to answer this question.
+-- How many employees live in Harare, Kilimani? M
 SELECT
 	employee_name,
 	town_name,
@@ -577,8 +563,7 @@ WHERE
    type_of_water_source = 'well'
 ORDER BY number_of_people_served;
 
--- Question 10
---  Consider the query we used to calculate the total number of people served by each water source:
+-- a query calculate the total number of people served by each water source:
 
 SELECT
 	type_of_water_source,
