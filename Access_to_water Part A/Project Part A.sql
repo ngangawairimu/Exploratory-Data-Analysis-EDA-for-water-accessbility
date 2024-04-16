@@ -1,5 +1,5 @@
 -- PART 1 Beginning Our Data-Driven Journey in Maji Ndogo
--- 1. Getting  to know our data
+-- 1. Getting  to know the data we will be using.
 
 SHOW TABLES	;
 /*data_dictionary
