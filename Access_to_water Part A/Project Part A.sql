@@ -11,7 +11,7 @@ water_quality
 water_source
 well_pollution*/
 
-/*we us the location table to check whether the data was imported correctly */
+/* I will use the location table to check whether the data was imported correctly */
 
 SELECT*
 FROM 
