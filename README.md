@@ -1,5 +1,5 @@
 # ACCESS-TO-WATER-
-## MAJOR PARTS
+## MAJOR PARTS OF THE PROJECT
 - Clustering data to unveil Maji Ndogo's water crisis
 - Moulding data into visual stories in Maji Ndogo
 - Transparency in tracking Maji ndogo's water funds
