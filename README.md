@@ -1,10 +1,10 @@
 # ACCESS-TO-WATER-
-# The project will contain 4 parts (A,B,C,D)
+## MAJOR PARTS
 - Clustering data to unveil Maji Ndogo's water crisis
 - Moulding data into visual stories in Maji Ndogo
 - Transparency in tracking Maji ndogo's water funds
 -  Communicating our findings in Maji Ndogo
-# Begining our data-driven journey in our majindogo(Fiction African  country)
+# Begining  data-driven journey in our majindogo
 ![mj1](https://github.com/ngangawairimu/Access-to-water-Part-A/assets/140246805/80d1e8ae-30ae-4adb-ade8-ddd2238bcf19)
 
 
@@ -31,21 +31,15 @@ Ensure availability and sustainable management of water and sanitation for all.
 - Power BI - Dashboarding and Storytelling
 - SQL - Data Cleaning
           -The emails for our department are easy: first_name.last_name@ndogowater.gov.
-            - selecting the employee_name column - replacing the space with a full stop - making it
-                    lowercase - and stitching it all together
-We then use CONCAT() to add the rest of the email address: SELECT CONCAT(
-LOWER(REPLACE(employee_name, &#39; &#39;, &#39;.&#39;)), &#39;@ndogowater.gov&#39;) AS new_email
-−− add it all together FROM the employee
+            - selecting the employee_name column 
 
-UPDATE employee SET email = CONCAT(LOWER(REPLACE(employee_name, &#39; &#39;, &#39;.&#39;)),
-&#39;@ndogowater.gov&#39;)
-
-  ## Results and finding
+Updating  employee  email 
+  ### Results and finding
 Water Accessibility and Infrastructure Summary Report
 This survey aimed to identify the water sources people use and determine both the total and
 average number of users for each source. Additionally, it examined the duration citizens typically
 spend in queues to access water.
-## Insights
+### Insights
 1. Most water sources are rural.
 2. 18% of our people are using wells of which, but within that, only 28% are clean. These
  are mostly in Hawassa, Kilimani, and Akatsi.
@@ -55,15 +49,14 @@ spend in queues to access water.
 5. 45% face non-functional systems due to issues with pipes, pumps, and reservoirs. Towns
     like Amina, the rural parts of Amanzi, and a couple of towns across Akatsi and Hawassa
    have broken infrastructure.
-6. Our citizens often face long wait times for water, averaging more than 120 minutes.
+6. Citizens often face long wait times for water, averaging more than 120 minutes.
 7. In terms of queues:
     - Queues are very long on Saturdays.
      - Queues are longer in the mornings and evenings.
     - Wednesdays and Sundays have the shortest queues.
 
 ## Recommendations
-1. We want to focus our efforts on improving the water sources that affect the most people.
-        - Most people will benefit if we improve the shared taps first.
+1.     - Most people will benefit if we improve the shared taps first.
         - Wells are a good source of water, but many are contaminated. Fixing this will benefit a
         lot of people.
         - Fixing existing infrastructure will help many people. If they have running water again,
@@ -77,26 +70,25 @@ spend in queues to access water.
 
 ## Solutions and Visualization
 ### National Scale
-We will use the power BI to visualize to help our President and provincial leader see the output at the national level for the president and provincial level for our provincial levels.
+Power BI waS used to visualize to help our President and provincial leader see the output at the national level for the president and provincial level for our provincial levels.
 - For national it will show The map of Majindogo the split between access to water between both rural and urban areas. The total number 
    of each type of water source for every town counts the different sources by type.
 ### Visualizing Queues
-We will add these plots to the Queues page
+These plots to the Queues page
  1. Average queue time per hour of the day as a line plot.
  2. Average queue time for each day.
  3. Average queue composition. 
 4. Total time queued per province
 ![q](https://github.com/ngangawairimu/ACCESS-TO-WATER-/assets/140246805/2e1c417c-b06a-4280-bcfd-48b1fc9a45c2)
 ### Insights from queues
-Selecting one of the provinces now filters all of the data by province. We can see that in Amanzi, the average queue is mostly made up of men, while on a national level, it is mostly women. On Saturdays, queues across Maji Ndogo are 40% men, and on Mondays, 71% women. We can even zoom in at 15:00 on a Saturday and see that the queue has only 3% children, while an hour later, the queue has 29% children.
+Selecting one of the provinces now filters all of the data by province.Amanzi, the average queue is mostly made up of men, while on a national level, it is mostly women. On Saturdays, queues across Maji Ndogo are 40% men, and on Mondays, 71% women. 
 ### Connecting crime
-The following trend was found 
-1. As water collectors, women are twice as likely to be a victim of crime than men. 
+
+1. Women are twice as likely to be a victim of crime than men. 
 2. Women are most likely to be victims of harassment, followed by sexual assault. 
 3. Crime spikes over weekends, and almost twice as many crimes are committed early in the mornings or at night with women again facing the greatest threat.
 ![w](https://github.com/ngangawairimu/ACCESS-TO-WATER-/assets/140246805/54895339-a19c-48ef-a8ab-0567209ecc07)
 ### Report summary
-We will  show the following data:
  1. Total people served for each water source type in a province.
  2. Number of water sources, their type, and whether it is rural or urban.
  3. Show the relevant statistics for towns in that province.
