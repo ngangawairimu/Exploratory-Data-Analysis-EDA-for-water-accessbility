@@ -1,6 +1,4 @@
-# ACCESS-TO-WATER-
-### Through restoring  the water flow where poeple have lost access to water through bad governance  and corruption 
-
+### ACCESS-TO-WATER
 #### In this project 
 - I will use SQL to clean and explore data 60,000 unique records
 - I will harness the power of SQL Functions, Including including intricate window functions, to draw insights from the data.
